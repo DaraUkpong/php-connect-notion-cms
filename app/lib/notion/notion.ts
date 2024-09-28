@@ -1,7 +1,5 @@
 // app/lib/notion/notion.ts
-import { NotionBlock, NotionPost, PostResponse } from '@/app/types/notion'
 import { Client } from '@notionhq/client'
-import { DatabaseObjectResponse, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 if (!process.env.NOTION_API_KEY) {
   throw new Error('NOTION_API_KEY is not defined')

@@ -3,7 +3,6 @@ import { getDatabaseItems } from "./lib/notion/notion"
 import { formatDate } from './utils/formatDate'
 import Link from 'next/link'
 import { NotionPost } from './types/notion'
-import { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export const revalidate = 3600 // Revalidate every hour
 
