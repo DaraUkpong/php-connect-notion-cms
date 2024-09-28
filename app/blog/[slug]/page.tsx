@@ -1,5 +1,5 @@
 // app/blog/[slug]/page.tsx
-import NotionBlockRenderer from '@/app/components/NotionBlockRenderer'
+
 import { getPostBySlug } from '@/app/lib/notion/notion'
 import type { PostResponse } from '@/app/types/notion'
 import { formatDate } from '@/app/utils/formatDate'

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { getDatabaseItems } from "./lib/notion/notion"
 import { formatDate } from './utils/formatDate'
 import Link from 'next/link'
-import { NotionPost } from './types/notion'
+import { NotionPost, NotionTag } from './types/notion'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -47,7 +47,7 @@ async function HomePage() {
               <div className="mt-auto">
                 {post.properties.Tags && (
                   <div className="flex flex-wrap gap-2">
-                    {post.properties.Tags.multi_select.map((tag: any) => (
+                    {post.properties.Tags.multi_select.map((tag: NotionTag) => (
                       <span 
                         key={tag.id}
                         className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full"
