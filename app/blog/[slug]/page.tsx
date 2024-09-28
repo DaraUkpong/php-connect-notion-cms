@@ -14,7 +14,7 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
-    const { post, blocks } = await getPostBySlug(params.slug) as unknown as PostResponse
+    const { post, } = await getPostBySlug(params.slug) as unknown as PostResponse
 
     return (
       <article className="container mx-auto px-4 py-8 max-w-3xl">
