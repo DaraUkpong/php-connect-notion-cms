@@ -2,19 +2,20 @@ import Image from 'next/image'
 import { getDatabaseItems } from "./lib/notion/notion"
 import { formatDate } from './utils/formatDate'
 import Link from 'next/link'
+import { NotionPost } from './types/notion'
+import { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export const revalidate = 3600 // Revalidate every hour
 
 async function HomePage() {
-  const posts = await getDatabaseItems()
+  const posts = await getDatabaseItems() as unknown as NotionPost[]
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post: any) => (
+        {posts.map((post) => (
           <Link
-          prefetch
           href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
           key={post.id}
         >

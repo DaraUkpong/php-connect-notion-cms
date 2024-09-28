@@ -25,7 +25,7 @@ type NotionText = {
     rich_text: NotionText[]
   }
   
-  type NotionTitle = {
+export  type NotionTitle = {
     title: NotionText[]
   }
   
@@ -100,7 +100,6 @@ type NotionText = {
   
   interface TextBlock extends BaseBlock {
     type: 'paragraph' | 'heading_1' | 'heading_2' | 'heading_3'
-    [key: string]: any
     paragraph?: NotionRichText
     heading_1?: NotionRichText
     heading_2?: NotionRichText
@@ -109,7 +108,6 @@ type NotionText = {
   
   interface ListBlock extends BaseBlock {
     type: 'bulleted_list_item' | 'numbered_list_item'
-    [key: string]: any
     bulleted_list_item?: NotionRichText
     numbered_list_item?: NotionRichText
   }

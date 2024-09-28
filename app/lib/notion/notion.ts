@@ -1,6 +1,7 @@
 // app/lib/notion/notion.ts
 import { NotionBlock, NotionPost, PostResponse } from '@/app/types/notion'
 import { Client } from '@notionhq/client'
+import { DatabaseObjectResponse, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
 
 if (!process.env.NOTION_API_KEY) {
   throw new Error('NOTION_API_KEY is not defined')
@@ -16,9 +17,12 @@ export const notion = new Client({
 
 export const DATABASE_ID = process.env.NOTION_DATABASE_ID
 
+
+
+
 export async function getDatabaseItems() {
   try {
-    const response = await notion.databases.query({
+    const response= await notion.databases.query({
       database_id: DATABASE_ID,
     })
     return response.results 
@@ -28,7 +32,7 @@ export async function getDatabaseItems() {
   }
 }
 
-export async function getPostBySlug(slug: string): Promise<PostResponse> {
+export async function getPostBySlug(slug: string) {
   try {
     const response = await notion.databases.query({
       database_id: DATABASE_ID,
@@ -47,12 +51,12 @@ export async function getPostBySlug(slug: string): Promise<PostResponse> {
     }
 
     const blocks = await notion.blocks.children.list({
-      block_id: post.id,
+      block_id: post.id ,
     })
 
     return {
-      post: post as any,
-      blocks: blocks.results as NotionBlock[],
+      post, 
+      blocks,
     }
   } catch (error) {
     console.error('Error fetching post by slug:', error)
