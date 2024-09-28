@@ -4,7 +4,7 @@ import { formatDate } from "./utils/formatDate";
 import Link from "next/link";
 import { NotionPost, NotionTag } from "./types/notion";
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 1; // Revalidate every hour
 
 async function HomePage() {
 
