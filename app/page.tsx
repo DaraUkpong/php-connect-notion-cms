@@ -7,21 +7,35 @@ import { NotionPost, NotionTag } from "./types/notion";
 export const revalidate = 3600; // Revalidate every hour
 
 async function HomePage() {
-  const posts = await getDatabaseItems() as unknown as NotionPost[];
+
+
+  const posts = (await getDatabaseItems()) as unknown as NotionPost[];
 
   // console.log("posts", posts);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+
         {posts && posts.length > 0 ? (
           posts.map((post) => {
+
+
+            console.log("post", post.properties.postStatus.select.name);
+            const isInactive = post.properties.postStatus.select.name === "Inactive";
+
+
             return (
-              <Link href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`} key={post.id}>
+              <Link
+                href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
+                key={post.id}
+              >
                 <article
                   key={post.id}
-                  className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden"
+                  className={`flex flex-col bg-white rounded-lg shadow-lg overflow-hidden ${
+                    isInactive ? "opacity-50 grayscale" : ""
+                  }`}
                 >
                   <div className="relative h-48 sm:h-64">
                     <Image
@@ -74,6 +88,7 @@ async function HomePage() {
         ) : (
           <p>No posts found</p>
         )}
+
       </div>
     </div>
   );

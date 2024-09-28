@@ -35,6 +35,14 @@ export  type NotionTitle = {
       end: string | null
     }
   }
+  type NotionSelect = {
+    type: 'select'
+    select: {
+      id: string
+      name: string
+      color: string
+    }
+  }
   
   type NotionFile = {
     file: {
@@ -70,6 +78,7 @@ export  type NotionTitle = {
       Author: NotionRichText
       PublishedDate: NotionDate
       Description?: NotionRichText
+      postStatus: NotionSelect
       FeaturedImage: {
         type: 'files'
         files: (NotionFile | NotionExternalFile)[]
