@@ -17,7 +17,6 @@ async function HomePage() {
         
         {posts && posts.length > 0 ? (
           posts.map((post) => {
-            console.log;
             return (
               <Link href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`} key={post.id}>
                 <article
