@@ -28,7 +28,7 @@ async function HomePage() {
 
             return (
               <Link
-                href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
+                href={!isInactive ? `/blog/${post.properties.Slug.rich_text[0].plain_text}` : ""}
                 key={post.id}
               >
                 <article
